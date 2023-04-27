@@ -19,12 +19,12 @@
 static CBlock CreateGenesisBlock(const char* pszTimestamp, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward, const std::string strTxComment)
 {
     CMutableTransaction txNew;
-    txNew.nVersion = 2;
+    txNew.nVersion = 1;
     txNew.vin.resize(1);
     txNew.vout.resize(1);
     txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(9999) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
     txNew.vout[0].nValue = 0;
-    txNew.nTime = 1504267100;
+    txNew.nTime = 1682597227;
     txNew.vout[0].scriptPubKey.clear();
 
     CBlock genesis;
@@ -42,8 +42,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, uint32_t nTime, uint3
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Alien search detects radio signals from dwarf galaxy 3bn light years from Earth - The Guardian - 1/Sep/2017";
-    const std::string strTxComment = "text:Trezarcoin genesis block";
+    const char* pszTimestamp = "Vice President Pence testifies to federal grand jury 4/27/23";
+    const std::string strTxComment = "text:Luckyzcoin genesis block";
     return CreateGenesisBlock(pszTimestamp, nTime, nNonce, nBits, nVersion, genesisReward, strTxComment);
 }
 
@@ -62,38 +62,38 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 1600000;
+        consensus.nSubsidyHalvingInterval = 2222222;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowTargetTimespan = 3 * 24 * 60 * 60; // 1 day
+        consensus.nPowTargetSpacing = 2.2 * 60;
         consensus.nStakeMinAge = 24 * 60 * 60;
-        consensus.nStakeMaxAge = 15 * 24 * 60 * 60;
+        consensus.nStakeMaxAge = 22 * 24 * 60 * 60;
         consensus.nBaseTargetSpacing = 30;
         consensus.nModifierInterval = 40 * 60;
-        consensus.checkpointPubKey = "04f658c459718ab3bd127621b27ec6ee47f71101ed2da36e64eb8e383e14885de25025ada0c04207838f185d350e9696ba0424e170b7def7157d17896a17510cba";
+        consensus.checkpointPubKey = "566963746f7269416e6e4b6f64794d6174746865774a6f7264696e4e69636f6c654d61736f6e4d6174746865774d61747468657754686f6d61734d634765686565";
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 15120; // 75% of 20160
-        consensus.nMinerConfirmationWindow = 20160; // Two weeks
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
+        consensus.nRuleChangeActivationThreshold = 1475; // 75% of 20160
+        consensus.nMinerConfirmationWindow = 1966.66666667; // Two weeks
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 22;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1682597227; // January 1, 2008
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1682597227; // December 31, 2008
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1538352000; // 1 October 2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1569888000; // 1 October 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1682597227; // 1 October 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1682597227; // 1 October 2019
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1538352000; // 1 October 2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1569888000; // 1 October 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1682597227; // 1 October 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1682597227; // 1 October 2019
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000017eac237034dfba7");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // Fork to enable cold staking and remove the block limiter.
         consensus.coldStakingFork = 1528000;
@@ -110,10 +110,10 @@ public:
         nDefaultPort = 17298;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1504267200, 3007239, 0x1e0fffff, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1682597227, 0, 0x1e0fffff, 1, 2200000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x24502ba55d673d2ee9170d83dae2d1adb3bfb4718e4f200db9951382cc4f6ee6"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa95b9f457f70633fcff90450ed57bbfc4dd45cb2034619b7c54ee80a1d266e91"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00"));
+        assert(genesis.hashMerkleRoot == uint256S("0x00"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("trezarcoin.com", "seed0.trezarcoin.com"));
